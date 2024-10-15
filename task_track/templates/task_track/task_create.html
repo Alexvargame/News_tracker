@@ -1,0 +1,33 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+{% load rest_framework %}
+
+{% block title %}
+		
+	Create Task
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+</style>
+	
+
+
+	<form action="{% url 'task_create_fr_url' %}" method='post'>
+		{% csrf_token %}
+		{%render_form serializer%}
+		<div class="form-group" style="width:50%">
+			<button type="submit" class="btn btn-primary">Сохранить</button>
+		</div>
+	</form>
+	
+{{s}}
+</div>
+{% endblock %} 
+

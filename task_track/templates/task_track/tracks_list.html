@@ -1,0 +1,63 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Tracks
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+   		 	<th style="width:10%">ID</th>
+			<th style="width:3%">Пользователь</th>
+		 	<th style="width:3%">Задача</th>
+			<th style="width:4%">Дата создания</th>
+		 	<th style="width:4%">Дата исполнения</th>
+  		 </tr>
+	
+	
+		
+	{% for track in tracks%}
+		<tr>
+		 <td style="font-size:80%;"><a href="{{track.get_absolute_url}}">{{track.id}}</a></td>
+    		 <td style="font-size:80%;">{{track.user.username}}</td>
+		 <td style="font-size:80%;">{{track.task.name}}</td>
+		 <td style="font-size:80%;">{{task.time_start}}</td>
+		 <td style="font-size:80%;">{{track.time_end}}</td>
+		</tr>
+	{% endfor %}
+	
+	
+	</table>
+ <a class="btn btn-info" href="{%url 'track_create_fr_url'%}" role="button">Новый трекер</a>
+{% include "pagination.html" with page=tracks %}
+</div>
+{{s}}
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

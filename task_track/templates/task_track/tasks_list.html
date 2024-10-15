@@ -1,0 +1,58 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Tasks
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+	<table>
+  		<tr>
+			<th style="width:3%">Название</th>
+		 	<th style="width:3%">Описание</th>
+  		 </tr>
+	
+	
+		
+	{% for task in tasks%}
+		<tr>
+		 <td style="font-size:80%;"><a href="{{task.get_absolute_url}}">{{task.name}}</a></td>
+    		 <td style="font-size:80%;">{{track.description}}</td>
+
+		</tr>
+	{% endfor %}
+	
+	
+	</table>
+ <a class="btn btn-info" href="{%url 'task_create_fr_url'%}" role="button">Новая задача</a>
+{% include "pagination.html" with page=tasks %}
+</div>
+{{s}}
+{% endblock %} 
+
+	        
+<!--{flat.get_absolute_url}-->

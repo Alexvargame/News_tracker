@@ -1,0 +1,47 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	track
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+		 <div class="card-header">
+		  ИНформация по трекеру
+		 </div>
+		 <ul class="list-group list-group-flush">
+			  <li class="list-group-item">Пользователь-{{user.username}}</a></li>
+			 <li class="list-group-item">Задача-<a href="{% url 'task_detail_fr_url' pk=track.task%}">{{task}}</a></li>
+			  <li class="list-group-item">Дата создания-{{track.time_start}}</li>
+			  <li class="list-group-item">Дата окончания-{{track.time_end}}</li>
+			  <li class="list-group-item">Длительность-{{duration}}</a></li>
+		 </ul>
+	 </div>
+
+	{% if request.user.is_authenticated %}
+		<div class="obj-panel">
+			 <p>Выбрать</p>
+			 {% block obj-panel%}
+				<a class="btn btn-light" href="{% url 'track_stop_fr_url' pk=track_id%}">Остановить</a>
+				<a class="btn btn-light" href="{% url 'track_update_fr_url' pk=track_id%}">Редактировать</a>
+				<a class="btn btn-danger" href="{% url 'track_delete_fr_url' pk=track_id%}">Del</a>
+				<a class="btn btn-light" href="{%url 'user_tracks_list_fr_url' pk=user.id%}">Вернуться к списку</a>
+			 {%endblock%}
+		</div>
+	{% endif%}
+</div>
+
+{% endblock %} 
+
+<!--{% for fl in flat.items %}
+		
+		<h4>{{fl.label}}</h4>
+		<p>{{fl}}</p>
+	{% endfor %}
+-->
+

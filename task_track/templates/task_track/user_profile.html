@@ -1,0 +1,37 @@
+﻿{% extends 'estate_objects/base_ob.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Flats
+{% endblock %}
+
+
+{% block content %}
+
+	<div class="features">
+	
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+ 	 <div class="card-header">
+  	  Информация о пользователе {{user_profile}}
+ 	 </div>
+	 Общая
+ 	 <ul class="list-group list-group-flush">
+	 <li class="list-group-item">Имя {{user_profile.name}}</li>
+	 <li class="list-group-item">Фамилия {{user_profile.sirname}}</li>
+ 	  
+  	Телефоны 
+	<li class="list-group-item"> {{user_profile.phone_number}}</a></li>  
+	<li class="list-group-item">День рождения-{{user_profile.birth_date}}</li>
+ 	 </ul>
+	Допольнительная информация
+ 	 <ul class="list-group list-group-flush">
+ 	  <li class="list-group-item">{{user_profile.about_user}}</a></li>
+ 	 </ul>
+	</div>
+	
+</div>
+{% endblock %} 
+
+

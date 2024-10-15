@@ -1,0 +1,63 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+{% load rest_framework %}
+
+{% block title %}
+		
+	Task list user
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+
+	<form action="{% url 'work_user_list_tasks_fr_url'%}" method='get'>
+		{% csrf_token %}
+		{%render_form serializer%}
+		<div class="form-group" style="width:50%">
+			<button type="submit" class="btn btn-primary">Найти</button>
+		</div>
+	</form>
+
+
+	<table>
+  		<tr>
+   		 	<th style="width:3%">Задача</th>
+			<th style="width:10%">Трудозатраты</th>
+		</tr>
+
+		{%for res in result%}
+			<tr>
+				<td style="font-size:80%;"><a href="{%url 'task_detail_fr_url' pk=res.0 %}">{{res.0}}</a></td>
+				<td style="font-size:80%;">
+					{% for k,v in res.1.items%}
+					{{k}} : {{v}}
+					{%endfor%}
+				</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+{{s}}
+</div>
+{% endblock %} 
+

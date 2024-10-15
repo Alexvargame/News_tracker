@@ -1,0 +1,31 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+
+ 
+{% block title %}
+		
+	Stop Track
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+</style>
+	
+	
+
+	<form action="{%url 'track_stop_fr_url' pk=track.id%}" method='post'>
+		{% csrf_token %}
+	<h3>Вы уверены, что хотите остановить трекер?<b>"{{track.id}}"</b></h3>
+	<a href="{{track.get_absolute_url}}">Отменить</a>
+	<button type="submit" class="btn btn-danger">Остановить</button>
+	</form>
+
+</div>
+{% endblock %} 
+

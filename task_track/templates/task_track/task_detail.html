@@ -1,0 +1,65 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	task
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+	<div class="card" style="width: 50rem;background-color: #dddddd;color:#2c2c2c;">
+ 	 <div class="card-header">
+  	  ИНформация по трекеру
+ 	 </div>
+		 <ul class="list-group list-group-flush">
+			 <li class="list-group-item">Название-{{task.name}}</li>
+			 <li class="list-group-item">Описание-{{task.discription}}</li>
+			 <li class="list-group-item">Неостановленные трекеры
+				 <ul class="list-group list-group-flush">
+				 	{%for track in tracks%}
+						  <li class="list-group-item">Пользователь:{{track.user}}-- Дата создания:{{track.time_start}}</li>
+					 {%endfor%}
+				 </ul>
+
+
+			 </li>
+		 </ul>
+	 </div>
+{% if request.user.is_authenticated %}
+	{% if count_tracks == users %}
+	<p>Все зарегистрированные пользователи уже работат над этой задачей</p>
+	{%endif%}
+	<div class="obj-panel">
+	<p>Выбрать</p>
+	 {% block obj-panel%}
+		{% if count_tracks < users %}
+			<a class="btn btn-light" href="{%url 'track_create_fr_url'%}">Запустить трекер</a>
+		{%endif%}
+		<a class="btn btn-light" href={{task.get_update_url}}>Редактировать</a>
+		<a class="btn btn-danger" href="{{task.get_delete_url}}">Del</a>
+		<a class="btn btn-light" href="{%url 'tasks_list_fr_url'%}">Вернуться к списку</a>
+	 {%endblock%}
+	</div>
+{% endif%}
+
+
+
+
+<br>
+{{s1}}
+<br>
+
+</div>
+
+{% endblock %} 
+
+<!--{% for fl in flat.items %}
+		
+		<h4>{{fl.label}}</h4>
+		<p>{{fl}}</p>
+	{% endfor %}
+-->
+

@@ -1,0 +1,68 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+{% load rest_framework %}
+
+{% block title %}
+		
+	Task list user
+{% endblock %}
+
+
+{% block content %}
+<div class="features" xmlns="http://www.w3.org/1999/html">
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 2px;
+		heigth: 5px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+
+	<form action="{% url 'intervals_work_fr_url'%}" method='get'>
+		{% csrf_token %}
+		{%render_form serializer%}
+		<div class="form-group" style="width:50%">
+			<button type="submit" class="btn btn-primary">Найти</button>
+		</div>
+	</form>
+
+
+	<table>
+  		<tr>
+   		 	<th colspan="2" style="width:3%">Временной интервал</th>
+			<th style="width:10%">Задача</th>
+		</tr>
+		<p>Пользователь</p> {{user}}
+		<p>Интервал</p> {{time_start|date:"d.m.Y"}}:{{time_end|date:"d.m.Y"}}</br>
+		{%for value in intervals_dict%}
+			<tr>
+				<td style="font-size:80%;">{{value.0|date:"d.m.Y"}}</td>
+				<td style="font-size:80%;">{{value.1|date:"d.m.Y"}}</td>
+				<td style="font-size:80%;">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Задача-<a href="">{{value.2.0.task.name}}</a></li>
+							<li class="list-group-item">Дата начала-{{value.2.0.time_start|date:"d.m.Y.H.m"}}</li>
+							<li class="list-group-item">Дата окончания-{{value.2.0.time_end|date:"d.m.Y.H.m"}}</li>
+						</ul>
+				</td>
+			</tr>
+			{%endfor%}
+
+
+	</table>
+{{s}}
+</div>
+{% endblock %} 
+

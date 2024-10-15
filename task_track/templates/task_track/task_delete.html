@@ -1,0 +1,31 @@
+﻿{% extends 'task_track/base_task_track.html'%}
+
+ 
+{% block title %}
+		
+	Delete Task
+{% endblock %}
+
+
+{% block content %}
+<div class="features">
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+</style>
+	
+	
+
+	<form action="{{task.get_delete_url}}" method='post'>
+		{% csrf_token %}
+	<h3>Вы уверены, что хотите удалить объект?<b>"{{task.name}}"</b></h3>
+	<a href="{{task.get_absolute_url}}">Отменить</a>
+	<button type="submit" class="btn btn-danger">Удалить</button>
+	</form>
+
+</div>
+{% endblock %} 
+

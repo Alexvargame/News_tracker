@@ -1,0 +1,69 @@
+﻿{% extends 'tasks/base_tasks.html'%}
+
+ 
+{% block title %}
+		
+	Create Task
+{% endblock %}
+
+
+{% block content %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+</style>
+	
+
+
+	<form action="{% url 'task_search_url' %}" method='get'>
+		{% csrf_token %}
+	<div class="form-group">
+		<table style="width:100%">
+  
+	<tr>
+   		 <td>Приоритет</td>
+    		 <td>Категория</td>
+		 <td>Дата создания:</br>начальная дата</td>
+		 <td>Дата создания:</br>конечная дата</td>
+		 <td>Дата исполнения:</br>начальная дата</td>
+		 <td>Дата исполнения:</br>конечная дата</td>
+		 <td>Статус</td>
+		
+ 	 </tr>
+
+	 <tr>
+   		 <td style="width:5%">{{form.priority}}</td>
+		 <td style="width:20%">{{category}}</td>
+		 
+		 <td style="width:10%">{{form.date_create_b}}</td>
+		 <td style="width:10%">{{form.date_create_e}}</td>
+		 
+    		 <td style="width:10%">{{form.date_to_do_b}}</td>
+		 <td style="width:10%">{{form.date_to_do_e}}</td>
+		 <td style="width:5%">{{form.status}}</td>
+   		 
+		 
+ 	 </tr>
+	</table>
+	<table style="width:100%">
+	
+	<tr>
+   		 
+		 
+ 	 </tr>
+	 
+		
+
+		</table>
+	</div>
+	<button type="submit" class="btn btn-primary">Найти</button>
+	</form>
+	
+
+{{tasks}}
+{{s}}
+{% endblock %} 
+
